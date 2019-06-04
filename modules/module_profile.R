@@ -33,13 +33,14 @@ module_profile <- function(input, output, session, pool, user) {
                h3(user_data$email),
                h3(user_data$affiliation),
                f7Block(strong = TRUE, inset = TRUE,
-                   f7InputList(
-                     list(
-                       list(type = 'textarea', label = 'bio', inputId = ns('txt_bio'), value = user_data$bio, clearButton = FALSE)
-                     ),
-                     outline = FALSE,
-                     labels = 'stacked'
-                   )
+                       f7Text(ns('txt_bio'), 'bio', value = user_data$bio)
+                   # f7InputList(
+                   #   list(
+                   #     list(type = 'textarea', label = 'bio', inputId = ns('txt_bio'), value = user_data$bio, clearButton = FALSE)
+                   #   ),
+                   #   outline = FALSE,
+                   #   labels = 'stacked'
+                   # )
                )
                
                )
