@@ -45,10 +45,21 @@ module_attendees <- function(input, output, session, pool) {
                     )
            )
   })
-  
+
   observeEvent(input$selected_contact, {
     user_name <- df_users[df_users$id == input$selected_contact, ]$name
-    session$sendCustomMessage("show_user", paste0('User: ', user_name))
+    insertUI(selector = "#app", where = "beforeEnd", immediate = FALSE,
+             ui = div(id = 'div_popup', class = 'popup my-popup modal-in popup-tablet-fullscreen',
+                      div(class = 'view',
+                          div(class = 'page',
+                              div(class = 'navbar',
+                                  div(class = 'navbar-inner',
+                                      div(class = 'title', user_name,
+                                          a(class = 'link popup-close', 'Close'))),
+                                  h3('GGG')
+                              )))
+             )
+    )
   })
   
 }
