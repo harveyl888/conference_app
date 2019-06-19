@@ -5,26 +5,6 @@ library(shiny)
 library(shinyF7)
 library(pool)
 library(dplyr)
-library(shinyjs)
-
-# jsCode <- "shinyjs.popup = function() {window.dynamicPopup = app.popup.create({
-#         content: '<div class = \"popup\">'+
-#         '<div class = \"block\">'+
-#         '<p>Popup created</p>'+
-#         '<p><a href = \"#\" class = \"link popup-close\">Close</a></p>'+
-#         '</div>'+
-#         '</div>',
-#         on: {
-#     open: function (popup) {
-#       console.log('Popup open');
-#     },
-#     opened: function (popup) {
-#       console.log('Popup opened');
-#     },
-#   }
-#         });
-#         },
-#         shiny.openPopup = function() {$('window.dynamicPopup').open();}"
 
 pool <- dbPool(
   drv = RSQLite::SQLite(),
@@ -102,10 +82,6 @@ ui <- f7Page(
   title = 'Conference App',
   f7Init(theme = 'md'),
   f7TabLayout(
-    
-    # useShinyjs(),
-    # extendShinyjs(text = jsCode, functions = c('popup', 'openPopup')),
-    
     f7Panel(title = "About", side = "left", theme = "light", style = "cover",
             f7Row(
               div(class = 'col',
