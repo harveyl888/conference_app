@@ -48,18 +48,32 @@ module_attendees <- function(input, output, session, pool) {
 
   observeEvent(input$selected_contact, {
     user_name <- df_users[df_users$id == input$selected_contact, ]$name
+    user_data <- dbGetQuery(pool, sprintf('SELECT * FROM users WHERE name = \'%s\'', user_name))
+    user_image <- 'https://randomuser.me/api/portraits/men/32.jpg'
+    
     insertUI(selector = "#app", where = "beforeEnd", immediate = FALSE,
              ui = div(id = 'div_popup', class = 'popup my-popup modal-in popup-tablet-fullscreen',
                       div(class = 'view',
                           div(class = 'page',
-                              div(class = 'navbar',
-                                  div(class = 'navbar-inner',
-                                      div(class = 'title', user_name,
-                                          a(class = 'link popup-close', 'Close'))),
-                                  h3('GGG')
-                              )))
+                              div(
+                                f7Card(title = user_name,
+                                       div(style = 'text-align: center;',
+                                           tags$div(style = 'height: 120px; width: 120px; display: inline-block;',
+                                                    tags$img(style='height: 100%; width: 100%; object-fit: contain', src=user_image)
+                                                    ),
+                                           br(),
+                                           h3(user_data$name),
+                                           h3(user_data$email),
+                                           h3(user_data$affiliation),
+                                           h3(user_data$bio)
+                                           ),
+                                       footer = tagList(a(class = 'link popup-close', 'Close'))
+                                       )
+                                )
+                              )
+                          )
+                      )
              )
-    )
   })
   
 }
