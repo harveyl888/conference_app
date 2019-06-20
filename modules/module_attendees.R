@@ -52,11 +52,12 @@ module_attendees <- function(input, output, session, pool) {
     user_image <- 'https://randomuser.me/api/portraits/men/32.jpg'
     
     insertUI(selector = "#app", where = "beforeEnd", immediate = FALSE,
-             ui = div(id = 'div_popup', class = 'popup my-popup modal-in popup-tablet-fullscreen',
+             ui = div(id = 'div_popup', class = 'popup my-popup modal-in',
                       div(class = 'view',
                           div(class = 'page',
                               div(
                                 f7Card(title = user_name,
+                                       outline = TRUE,
                                        div(style = 'text-align: center;',
                                            tags$div(style = 'height: 120px; width: 120px; display: inline-block;',
                                                     tags$img(style='height: 100%; width: 100%; object-fit: contain', src=user_image)
