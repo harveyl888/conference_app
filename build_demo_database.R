@@ -2,12 +2,14 @@
 
 library(DBI)
 
+names <- c('alice adams', 'arthur adams', 'annie ansell', 'bob barnes', 'charlie croker', 'daniel davies', 'edward edwards', 'ellis edwards', 'jeremy jenkins', 'kevin keller')
+
 df_users <- data.frame(
-  name = c('alice adams', 'arthur adams', 'bob barnes', 'charlie croker', 'daniel davies', 'edward edwards'),
-  email = c('alice.adams@my_company.com', 'arthur.adams@my_company.com', 'bob.barnes@my_company.com', 'charlie.croker@my_company.com', 'daniel.davies@another_company.com', 'edward.edwards@another_company.com'),
-  affiliation = c(rep('my_company', 4), rep('another_company', 2)),
-  bio = c('alice bio', '', 'bob bio', rep('', 3)),
-  photo = rep('', 6),
+  name = names,
+  email = sapply(strsplit(names, ' '), function(x) sprintf('%s.%s@my_company.com', x[1], x[2])),
+  affiliation = 'my_company',
+  bio = paste0(names, ' bio'),
+  photo = '',
   stringsAsFactors = FALSE
 )
 
