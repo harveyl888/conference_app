@@ -30,7 +30,7 @@ module_home <- function(input, output, session) {
                                   f7Icon(x[['icon']], lib = 'md')
                                   ),
                               div(class = 'item-inner',
-                                  tags$a(href = '#', id = ns(paste('but', x, sep='_')), class = 'action-button item-link list-button', x[['name']])
+                                  tags$a(href = '#', id = ns(paste('but', x[['name']], sep='_')), class = 'action-button item-link list-button', x[['name']])
                                   )
                               )
                           })

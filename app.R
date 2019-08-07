@@ -22,6 +22,12 @@ source('./modules/module_schedule.R')
 source('./modules/module_attendees.R')
 source('./modules/module_location.R')
 
+## Close database upon exit
+onStop(function(){
+  ## close database
+  poolClose(pool)
+})
+
 server <- function(input, output, session) {
 
   ## Home Module
